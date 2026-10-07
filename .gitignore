@@ -1,0 +1,12 @@
+.DS_Store
+**/build/
+**/logs/
+__pycache__/
+*.pyc
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
