@@ -1,0 +1,180 @@
+Полный функциональный прогон и демонстрация итогового образа
+
+mkdir -p build
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -O2 -Wall -Wextra -Wpedantic -Werror -DCENTER_MODE=1 -Dfork=test_fork src/main.c src/config.c src/io.c src/ipc.c src/model.c src/controller.c tests/fail_fork.c  -pthread -lrt -o build/center_fault
+mkdir -p build
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -O2 -Wall -Wextra -Wpedantic -Werror -DCENTER_MODE=2 -Dfork=test_fork src/main.c src/config.c src/io.c src/ipc.c src/model.c src/controller.c tests/fail_fork.c  -pthread -lrt -o build/center_fault_unnamed
+python3 tests/test_simulation.py build
+test_actual_overlap_and_timing (__main__.NamedTests.test_actual_overlap_and_timing) ... ok
+test_broken_output (__main__.NamedTests.test_broken_output) ... ok
+test_congestion (__main__.NamedTests.test_congestion) ... ok
+test_defaults_and_empty (__main__.NamedTests.test_defaults_and_empty) ... ok
+test_exact_retry_limit (__main__.NamedTests.test_exact_retry_limit) ... ok
+test_help_and_log_error (__main__.NamedTests.test_help_and_log_error) ... ok
+test_interrupt_sleep_and_full_queue (__main__.NamedTests.test_interrupt_sleep_and_full_queue) ... ok
+test_invalid_arguments (__main__.NamedTests.test_invalid_arguments) ... ok
+test_no_errors (__main__.NamedTests.test_no_errors) ... ok
+test_partial_process_creation_failure (__main__.NamedTests.test_partial_process_creation_failure) ... ok
+test_queue_wraparound (__main__.NamedTests.test_queue_wraparound) ... ok
+test_repeated_runs (__main__.NamedTests.test_repeated_runs) ... ok
+test_seed_and_log (__main__.NamedTests.test_seed_and_log) ... ok
+test_varied_configurations (__main__.NamedTests.test_varied_configurations) ... ok
+test_actual_overlap_and_timing (__main__.UnnamedTests.test_actual_overlap_and_timing) ... ok
+test_broken_output (__main__.UnnamedTests.test_broken_output) ... ok
+test_congestion (__main__.UnnamedTests.test_congestion) ... ok
+test_defaults_and_empty (__main__.UnnamedTests.test_defaults_and_empty) ... ok
+test_exact_retry_limit (__main__.UnnamedTests.test_exact_retry_limit) ... ok
+test_help_and_log_error (__main__.UnnamedTests.test_help_and_log_error) ... ok
+test_interrupt_sleep_and_full_queue (__main__.UnnamedTests.test_interrupt_sleep_and_full_queue) ... ok
+test_invalid_arguments (__main__.UnnamedTests.test_invalid_arguments) ... ok
+test_no_errors (__main__.UnnamedTests.test_no_errors) ... ok
+test_partial_process_creation_failure (__main__.UnnamedTests.test_partial_process_creation_failure) ... ok
+test_queue_wraparound (__main__.UnnamedTests.test_queue_wraparound) ... ok
+test_repeated_runs (__main__.UnnamedTests.test_repeated_runs) ... ok
+test_seed_and_log (__main__.UnnamedTests.test_seed_and_log) ... ok
+test_varied_configurations (__main__.UnnamedTests.test_varied_configurations) ... ok
+test_actual_overlap_and_timing (__main__.IndependentTests.test_actual_overlap_and_timing) ... ok
+test_broken_output (__main__.IndependentTests.test_broken_output) ... ok
+test_congestion (__main__.IndependentTests.test_congestion) ... ok
+test_defaults_and_empty (__main__.IndependentTests.test_defaults_and_empty) ... ok
+test_exact_retry_limit (__main__.IndependentTests.test_exact_retry_limit) ... ok
+test_help_and_log_error (__main__.IndependentTests.test_help_and_log_error) ... ok
+test_interrupt_sleep_and_full_queue (__main__.IndependentTests.test_interrupt_sleep_and_full_queue) ... ok
+test_invalid_arguments (__main__.IndependentTests.test_invalid_arguments) ... ok
+test_no_errors (__main__.IndependentTests.test_no_errors) ... ok
+test_partial_process_creation_failure (__main__.IndependentTests.test_partial_process_creation_failure) ... skipped 'независимый контроллер не вызывает fork'
+test_queue_wraparound (__main__.IndependentTests.test_queue_wraparound) ... ok
+test_repeated_runs (__main__.IndependentTests.test_repeated_runs) ... ok
+test_seed_and_log (__main__.IndependentTests.test_seed_and_log) ... ok
+test_varied_configurations (__main__.IndependentTests.test_varied_configurations) ... ok
+test_concurrent_sessions (__main__.SessionTests.test_concurrent_sessions) ... ok
+test_independent_registration (__main__.SessionTests.test_independent_registration) ... ok
+test_interrupt_before_workers (__main__.SessionTests.test_interrupt_before_workers) ... ok
+test_missing_workers_and_cleanup (__main__.SessionTests.test_missing_workers_and_cleanup) ... ok
+
+----------------------------------------------------------------------
+Ran 46 tests in 37.641s
+
+OK (skipped=1)
+named / success
+ИТОГ status=completed planned=40 formed=40 delivered=40 rejected=0 unfinished=0 not_generated=0 scan_attempts=40 errors=0 repeats=0 waits=4 time_ms=183 processes=54 signal=0
+CLEANUP session=p10483_147193381
+named / errors
+ИТОГ status=completed planned=17 formed=17 delivered=0 rejected=17 unfinished=0 not_generated=0 scan_attempts=68 errors=68 repeats=51 waits=12 time_ms=216 processes=31 signal=0
+CLEANUP session=p10538_338908215
+unnamed / success
+ИТОГ status=completed planned=40 formed=40 delivered=40 rejected=0 unfinished=0 not_generated=0 scan_attempts=40 errors=0 repeats=0 waits=2 time_ms=168 processes=54 signal=0
+CLEANUP session=p10570_559650507
+unnamed / errors
+ИТОГ status=completed planned=17 formed=17 delivered=0 rejected=17 unfinished=0 not_generated=0 scan_attempts=68 errors=68 repeats=51 waits=12 time_ms=212 processes=31 signal=0
+CLEANUP session=p10625_731491548
+independent / success
+ИТОГ status=completed planned=40 formed=40 delivered=40 rejected=0 unfinished=0 not_generated=0 scan_attempts=40 errors=0 repeats=0 waits=5 time_ms=203 processes=54 signal=0
+CLEANUP session=i10657_973238923
+independent / errors
+ИТОГ status=completed planned=17 formed=17 delivered=0 rejected=17 unfinished=0 not_generated=0 scan_attempts=68 errors=68 repeats=51 waits=12 time_ms=228 processes=31 signal=0
+CLEANUP session=i10715_235767257
+Linux aarch64
+gcc (Debian 12.2.0-14+deb12u1) 12.2.0
+Copyright (C) 2022 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+
+
+Полный прогон ASan + UBSan
+
+make BUILD=build/sanitize CFLAGS='-std=c11 -O1 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer' LDFLAGS='-fsanitize=address,undefined' test
+make[1]: Entering directory '/tmp/idz3'
+mkdir -p build/sanitize
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -O1 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -DCENTER_MODE=1 src/main.c src/config.c src/io.c src/ipc.c src/model.c src/controller.c -fsanitize=address,undefined -pthread -lrt -o build/sanitize/center_named
+mkdir -p build/sanitize
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -O1 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -DCENTER_MODE=2 src/main.c src/config.c src/io.c src/ipc.c src/model.c src/controller.c -fsanitize=address,undefined -pthread -lrt -o build/sanitize/center_unnamed
+mkdir -p build/sanitize
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -O1 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -DCENTER_MODE=3 src/main.c src/config.c src/io.c src/ipc.c src/model.c src/controller.c -fsanitize=address,undefined -pthread -lrt -o build/sanitize/center_session
+mkdir -p build/sanitize
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -O1 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -DCENTER_MODE=4 src/main.c src/config.c src/io.c src/ipc.c src/model.c src/controller.c -fsanitize=address,undefined -pthread -lrt -o build/sanitize/center_worker
+mkdir -p build/sanitize
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -O1 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -DCENTER_MODE=1 -Dfork=test_fork src/main.c src/config.c src/io.c src/ipc.c src/model.c src/controller.c tests/fail_fork.c -fsanitize=address,undefined -pthread -lrt -o build/sanitize/center_fault
+mkdir -p build/sanitize
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -O1 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -DCENTER_MODE=2 -Dfork=test_fork src/main.c src/config.c src/io.c src/ipc.c src/model.c src/controller.c tests/fail_fork.c -fsanitize=address,undefined -pthread -lrt -o build/sanitize/center_fault_unnamed
+python3 tests/test_simulation.py build/sanitize
+test_actual_overlap_and_timing (__main__.NamedTests.test_actual_overlap_and_timing) ... ok
+test_broken_output (__main__.NamedTests.test_broken_output) ... ok
+test_congestion (__main__.NamedTests.test_congestion) ... ok
+test_defaults_and_empty (__main__.NamedTests.test_defaults_and_empty) ... ok
+test_exact_retry_limit (__main__.NamedTests.test_exact_retry_limit) ... ok
+test_help_and_log_error (__main__.NamedTests.test_help_and_log_error) ... ok
+test_interrupt_sleep_and_full_queue (__main__.NamedTests.test_interrupt_sleep_and_full_queue) ... ok
+test_invalid_arguments (__main__.NamedTests.test_invalid_arguments) ... ok
+test_no_errors (__main__.NamedTests.test_no_errors) ... ok
+test_partial_process_creation_failure (__main__.NamedTests.test_partial_process_creation_failure) ... ok
+test_queue_wraparound (__main__.NamedTests.test_queue_wraparound) ... ok
+test_repeated_runs (__main__.NamedTests.test_repeated_runs) ... ok
+test_seed_and_log (__main__.NamedTests.test_seed_and_log) ... ok
+test_varied_configurations (__main__.NamedTests.test_varied_configurations) ... ok
+test_actual_overlap_and_timing (__main__.UnnamedTests.test_actual_overlap_and_timing) ... ok
+test_broken_output (__main__.UnnamedTests.test_broken_output) ... ok
+test_congestion (__main__.UnnamedTests.test_congestion) ... ok
+test_defaults_and_empty (__main__.UnnamedTests.test_defaults_and_empty) ... ok
+test_exact_retry_limit (__main__.UnnamedTests.test_exact_retry_limit) ... ok
+test_help_and_log_error (__main__.UnnamedTests.test_help_and_log_error) ... ok
+test_interrupt_sleep_and_full_queue (__main__.UnnamedTests.test_interrupt_sleep_and_full_queue) ... ok
+test_invalid_arguments (__main__.UnnamedTests.test_invalid_arguments) ... ok
+test_no_errors (__main__.UnnamedTests.test_no_errors) ... ok
+test_partial_process_creation_failure (__main__.UnnamedTests.test_partial_process_creation_failure) ... ok
+test_queue_wraparound (__main__.UnnamedTests.test_queue_wraparound) ... ok
+test_repeated_runs (__main__.UnnamedTests.test_repeated_runs) ... ok
+test_seed_and_log (__main__.UnnamedTests.test_seed_and_log) ... ok
+test_varied_configurations (__main__.UnnamedTests.test_varied_configurations) ... ok
+test_actual_overlap_and_timing (__main__.IndependentTests.test_actual_overlap_and_timing) ... ok
+test_broken_output (__main__.IndependentTests.test_broken_output) ... ok
+test_congestion (__main__.IndependentTests.test_congestion) ... ok
+test_defaults_and_empty (__main__.IndependentTests.test_defaults_and_empty) ... ok
+test_exact_retry_limit (__main__.IndependentTests.test_exact_retry_limit) ... ok
+test_help_and_log_error (__main__.IndependentTests.test_help_and_log_error) ... ok
+test_interrupt_sleep_and_full_queue (__main__.IndependentTests.test_interrupt_sleep_and_full_queue) ... ok
+test_invalid_arguments (__main__.IndependentTests.test_invalid_arguments) ... ok
+test_no_errors (__main__.IndependentTests.test_no_errors) ... ok
+test_partial_process_creation_failure (__main__.IndependentTests.test_partial_process_creation_failure) ... skipped 'независимый контроллер не вызывает fork'
+test_queue_wraparound (__main__.IndependentTests.test_queue_wraparound) ... ok
+test_repeated_runs (__main__.IndependentTests.test_repeated_runs) ... ok
+test_seed_and_log (__main__.IndependentTests.test_seed_and_log) ... ok
+test_varied_configurations (__main__.IndependentTests.test_varied_configurations) ... ok
+test_concurrent_sessions (__main__.SessionTests.test_concurrent_sessions) ... ok
+test_independent_registration (__main__.SessionTests.test_independent_registration) ... ok
+test_interrupt_before_workers (__main__.SessionTests.test_interrupt_before_workers) ... ok
+test_missing_workers_and_cleanup (__main__.SessionTests.test_missing_workers_and_cleanup) ... ok
+
+----------------------------------------------------------------------
+Ran 46 tests in 483.220s
+
+OK (skipped=1)
+make[1]: Leaving directory '/tmp/idz3'
+
+
+Адресный повтор ASan + UBSan после последней правки
+
+mkdir -p build/sanitize
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -O1 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -DCENTER_MODE=1 src/main.c src/config.c src/io.c src/ipc.c src/model.c src/controller.c -fsanitize=address,undefined -pthread -lrt -o build/sanitize/center_named
+mkdir -p build/sanitize
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -O1 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -DCENTER_MODE=2 src/main.c src/config.c src/io.c src/ipc.c src/model.c src/controller.c -fsanitize=address,undefined -pthread -lrt -o build/sanitize/center_unnamed
+mkdir -p build/sanitize
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -O1 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -DCENTER_MODE=3 src/main.c src/config.c src/io.c src/ipc.c src/model.c src/controller.c -fsanitize=address,undefined -pthread -lrt -o build/sanitize/center_session
+mkdir -p build/sanitize
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -O1 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -DCENTER_MODE=4 src/main.c src/config.c src/io.c src/ipc.c src/model.c src/controller.c -fsanitize=address,undefined -pthread -lrt -o build/sanitize/center_worker
+mkdir -p build/sanitize
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -O1 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -DCENTER_MODE=1 -Dfork=test_fork src/main.c src/config.c src/io.c src/ipc.c src/model.c src/controller.c tests/fail_fork.c -fsanitize=address,undefined -pthread -lrt -o build/sanitize/center_fault
+mkdir -p build/sanitize
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -O1 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -DCENTER_MODE=2 -Dfork=test_fork src/main.c src/config.c src/io.c src/ipc.c src/model.c src/controller.c tests/fail_fork.c -fsanitize=address,undefined -pthread -lrt -o build/sanitize/center_fault_unnamed
+test_no_errors (test_simulation.SimulationTests.test_no_errors) ... ok
+test_no_errors (test_simulation.SimulationTests.test_no_errors) ... ok
+test_no_errors (test_simulation.SimulationTests.test_no_errors) ... ok
+test_partial_process_creation_failure (test_simulation.SimulationTests.test_partial_process_creation_failure) ... ok
+test_partial_process_creation_failure (test_simulation.SimulationTests.test_partial_process_creation_failure) ... ok
+test_independent_registration (test_simulation.SessionTests.test_independent_registration) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 17.475s
+
+OK
