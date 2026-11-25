@@ -1,0 +1,83 @@
+Проверки 25 ноября 2026 года, Docker Linux ARM64
+
+$ docker run --rm --init akos-idz4 make test
+python3 tests/test_network.py build
+test_all_errors (__main__.NetworkTests.test_all_errors) ... ok
+test_bad_protocol_does_not_stop_server (__main__.NetworkTests.test_bad_protocol_does_not_stop_server) ... ok
+test_client_connect_before_server (__main__.NetworkTests.test_client_connect_before_server) ... ok
+test_concurrent_servers (__main__.NetworkTests.test_concurrent_servers) ... ok
+test_duplicate_client_retry_is_bounded (__main__.NetworkTests.test_duplicate_client_retry_is_bounded) ... ok
+test_duplicate_completion (__main__.NetworkTests.test_duplicate_completion) ... ok
+test_duplicate_role (__main__.NetworkTests.test_duplicate_role) ... ok
+test_heartbeat_detects_silent_worker (__main__.NetworkTests.test_heartbeat_detects_silent_worker) ... ok
+test_invalid_arguments (__main__.NetworkTests.test_invalid_arguments) ... ok
+test_log_matches_console (__main__.NetworkTests.test_log_matches_console) ... ok
+test_manual_unloader_reconnect (__main__.NetworkTests.test_manual_unloader_reconnect) ... ok
+test_maximum_batch_snapshot (__main__.NetworkTests.test_maximum_batch_snapshot) ... ok
+test_missing_workers_timeout (__main__.NetworkTests.test_missing_workers_timeout) ... ok
+test_multiple_observers_same_events (__main__.NetworkTests.test_multiple_observers_same_events) ... ok
+test_no_observer (__main__.NetworkTests.test_no_observer) ... ok
+test_observer_disconnect_reconnect_snapshot (__main__.NetworkTests.test_observer_disconnect_reconnect_snapshot) ... ok
+test_partial_protocol_and_coalesced_lines (__main__.NetworkTests.test_partial_protocol_and_coalesced_lines) ... ok
+test_port_reuse (__main__.NetworkTests.test_port_reuse) ... ok
+test_processing_delay_and_overlap (__main__.NetworkTests.test_processing_delay_and_overlap) ... ok
+test_random_cases (__main__.NetworkTests.test_random_cases) ... ok
+test_reconnect_every_worker_role (__main__.NetworkTests.test_reconnect_every_worker_role) ... ok
+test_seed_results (__main__.NetworkTests.test_seed_results) ... ok
+test_server_crash_clients_exit (__main__.NetworkTests.test_server_crash_clients_exit) ... ok
+test_shutdown_signals (__main__.NetworkTests.test_shutdown_signals) ... ok
+test_slow_observer_does_not_block (__main__.NetworkTests.test_slow_observer_does_not_block) ... ok
+test_success (__main__.NetworkTests.test_success) ... ok
+test_tiny_buffers (__main__.NetworkTests.test_tiny_buffers) ... ok
+test_unwritable_log (__main__.NetworkTests.test_unwritable_log) ... ok
+test_zero_parcels (__main__.NetworkTests.test_zero_parcels) ... ok
+test_zero_retries (__main__.NetworkTests.test_zero_retries) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 39.010s
+
+OK
+
+$ docker run --rm --init akos-idz4 make sanitize
+(ниже вывод тестового набора после сборки с -fsanitize=address,undefined)
+test_all_errors (__main__.NetworkTests.test_all_errors) ... ok
+test_bad_protocol_does_not_stop_server (__main__.NetworkTests.test_bad_protocol_does_not_stop_server) ... ok
+test_client_connect_before_server (__main__.NetworkTests.test_client_connect_before_server) ... ok
+test_concurrent_servers (__main__.NetworkTests.test_concurrent_servers) ... ok
+test_duplicate_client_retry_is_bounded (__main__.NetworkTests.test_duplicate_client_retry_is_bounded) ... ok
+test_duplicate_completion (__main__.NetworkTests.test_duplicate_completion) ... ok
+test_duplicate_role (__main__.NetworkTests.test_duplicate_role) ... ok
+test_heartbeat_detects_silent_worker (__main__.NetworkTests.test_heartbeat_detects_silent_worker) ... ok
+test_invalid_arguments (__main__.NetworkTests.test_invalid_arguments) ... ok
+test_log_matches_console (__main__.NetworkTests.test_log_matches_console) ... ok
+test_manual_unloader_reconnect (__main__.NetworkTests.test_manual_unloader_reconnect) ... ok
+test_maximum_batch_snapshot (__main__.NetworkTests.test_maximum_batch_snapshot) ... ok
+test_missing_workers_timeout (__main__.NetworkTests.test_missing_workers_timeout) ... ok
+test_multiple_observers_same_events (__main__.NetworkTests.test_multiple_observers_same_events) ... ok
+test_no_observer (__main__.NetworkTests.test_no_observer) ... ok
+test_observer_disconnect_reconnect_snapshot (__main__.NetworkTests.test_observer_disconnect_reconnect_snapshot) ... ok
+test_partial_protocol_and_coalesced_lines (__main__.NetworkTests.test_partial_protocol_and_coalesced_lines) ... ok
+test_port_reuse (__main__.NetworkTests.test_port_reuse) ... ok
+test_processing_delay_and_overlap (__main__.NetworkTests.test_processing_delay_and_overlap) ... ok
+test_random_cases (__main__.NetworkTests.test_random_cases) ... ok
+test_reconnect_every_worker_role (__main__.NetworkTests.test_reconnect_every_worker_role) ... ok
+test_seed_results (__main__.NetworkTests.test_seed_results) ... ok
+test_server_crash_clients_exit (__main__.NetworkTests.test_server_crash_clients_exit) ... ok
+test_shutdown_signals (__main__.NetworkTests.test_shutdown_signals) ... ok
+test_slow_observer_does_not_block (__main__.NetworkTests.test_slow_observer_does_not_block) ... ok
+test_success (__main__.NetworkTests.test_success) ... ok
+test_tiny_buffers (__main__.NetworkTests.test_tiny_buffers) ... ok
+test_unwritable_log (__main__.NetworkTests.test_unwritable_log) ... ok
+test_zero_parcels (__main__.NetworkTests.test_zero_parcels) ... ok
+test_zero_retries (__main__.NetworkTests.test_zero_retries) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 108.008s
+
+OK
+make[1]: Leaving directory '/project'
+
+$ python3 tests/distributed.py
+PASS: 3 Linux containers, separate network namespaces, TCP, 30 deliveries, all exit codes 0
+SUMMARY reason=complete total=30 formed=30 delivered=30 rejected=0 pending=0 attempts=30
+
